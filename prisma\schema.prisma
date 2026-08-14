@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Prediction {
+  id            String   @id @default(cuid())
+
+  pseudo        String
+
+  gender        String
+
+  birthDate     DateTime
+
+  birthTime     String
+
+  weight        Float
+
+  size          Int
+
+  firstLetter   String
+
+  score         Int      @default(0)
+
+  createdAt     DateTime @default(now())
+}
+
+model Admin {
+  id            String   @id @default(cuid())
+
+  email         String   @unique
+
+  passwordHash  String
+}
